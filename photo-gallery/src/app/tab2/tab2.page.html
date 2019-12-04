@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar class="col text-center">
+    <ion-title>
+      List Of Users
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar 
+  showCancelButton="focus" 
+  cancelButtonText="Custom Cancel"></ion-searchbar>
+
+  <ion-card *ngFor="let users of usersDetail; let i=index">
+    <ion-card-header>
+      <ion-fab horizontal="end" vertical="top">
+        <ion-fab-button color="light" style="height: 40px; width: 40px;">
+          <ion-icon name="arrow-dropleft"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+          <ion-fab-button color="light" (click)="onEdit(i)">
+            <ion-icon name="create"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light" (click)="onDelete(i)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+      <ion-card-subtitle>{{i+1}}</ion-card-subtitle>
+     
+      <ion-card-title><span>{{users.firstName[0]}}{{users.lastName[0]}}</span></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Fullname: </ion-label>{{users.firstName}} {{users.lastName}}
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender: </ion-label>{{users.gender}}
+      </ion-item>
+      <ion-item>
+        <ion-label>Email: </ion-label>{{users.email}}
+      </ion-item>
+      <ion-item>
+        <ion-label>Mobile: </ion-label>{{users.mobile}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content> 

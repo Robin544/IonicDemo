@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar class="col text-center">
+    <ion-title>
+      <h1>Fill Your Details</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+      <ion-item>
+        <ion-label position="floating" style="margin-left: 20px;">First Name</ion-label>
+        <ion-input 
+        type="text" 
+        minlength="3"
+        maxlength="20"
+        name="firstName"
+        #firstName="ngModel"
+        [(ngModel)]="newUser.firstName"
+        [ngClass]="{'is-invalid': f.submitted && firstName.invalid}"
+        required>
+        <ion-icon ios="ios-person" md="md-person" style="margin-right: 10px; font-size: 20px;"></ion-icon></ion-input>
+      </ion-item>
+      <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+        <div *ngIf="firstName.errors.required">
+            *This field is mandatory.*
+        </div>
+        <div *ngIf="firstName.errors.minlength">
+            *Enter at least 3 characters.* 
+        </div>
+        <div *ngIf="firstName.errors.maxlength">
+          *Enter less than 20 characters.* 
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input
+        type="text"
+        minlength="3"
+        maxlength="20"
+        name="lastName"
+        #lastName="ngModel"
+        [(ngModel)]="newUser.lastName"
+        [ngClass]="{'is-invalid': f.submitted && lastName.invalid}"
+        required></ion-input>
+      </ion-item>
+      <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+        <div *ngIf="lastName.errors.required">
+            *This field is mandatory.*
+        </div>
+        <div *ngIf="lastName.errors.minlength">
+            *Enter at least 3 characters.* 
+        </div>
+        <div *ngIf="lastName.errors.maxlength">
+          *Enter less than 20 characters.* 
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select 
+        placeholder="Select One" 
+        name="gender" 
+        #gender="ngModel" 
+        [(ngModel)]="newUser.gender" 
+        [ngClass]="{'is-invalid': f.submitted && gender.invalid}"
+        required>
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="male">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+        <div *ngIf="gender.errors.required">
+            *This field is mandatory.*
+        </div>
+      </div>
+
+      <ion-item>
+          <ion-label position="floating">Email address</ion-label>
+          <ion-input
+          type="text"
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="newUser.email"
+          [ngClass]="{'is-invalid': f.submitted && email.invalid}"
+          required email></ion-input>
+        </ion-item>
+        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">
+              *This field is mandatory.*
+          </div>
+          <div *ngIf="email.errors.email">
+              *Enter valid email address.* 
+          </div>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input
+          type="number"
+          name="mobile"
+          #mobile="ngModel"
+          [(ngModel)]="newUser.mobile"
+          [ngClass]="{'is-invalid': f.submitted && mobile.invalid}"
+          required></ion-input>
+        </ion-item>
+        <div *ngIf="f.submitted && mobile.invalid" class="invalid-feedback">
+          <div *ngIf="mobile.errors.required">
+              *This field is mandatory.*
+          </div>
+        </div>
+        <br><br>
+        <div class="col text-center">
+          <ion-button type="submit" color="primary">Save</ion-button>
+        </div>
+    </form>
+  </div>
+</ion-content>
